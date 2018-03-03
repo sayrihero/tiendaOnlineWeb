@@ -1,0 +1,115 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-5 jumbotron">
+      <h4>Categorias</h4>
+      <form #formCategoria="ngForm" (ngSubmit)="ingresarCategoria()">
+        <div class="row">
+          <div class="col-md-12 py-2">
+            <label class="h6" for="cat_id">Codigo de Categoria:</label>
+            <input id="cat_id" type="text" class="form-control" name="cat_id" placeholder="Ingrese codigo de categoria" [(ngModel)]="cat_id"
+              required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 py-2">
+            <label class="h6" for="cat_nombre">Nombre de Categoria:</label>
+            <input id="cat_nombre" type="text" class="form-control" name="cat_nombre" placeholder="Ingrese nombre de categoria" [(ngModel)]="cat_nombre"
+              required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 py-2">
+            <label class="h6" for="cat_descripcion">Descripcion de Categoria:</label>
+            <textarea id="cat_descripcion" type="text" class="form-control" name="cat_descripcion" placeholder="Ingrese descripcion de categoria"
+              [(ngModel)]="cat_descripcion" rows="3" required></textarea>
+          </div>
+        </div>
+        <hr>
+        <button [disabled]="!formCategoria.form.valid" class="btn btn-primary">Ingresar Categoria</button>
+      </form>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-5 jumbotron">
+      <h4>Articulos</h4>
+      <form #formArticulo="ngForm" (ngSubmit)="ingresarArticulo()">
+        <div class="row">
+          <div class="col-md-12 py-2">
+            <label class="h6" for="ar_nombre">Nombre de Articulo:</label>
+            <input id="ar_nombre" type="text" class="form-control" name="ar_nombre" placeholder="Ingrese nombre de articulo" [(ngModel)]="ar_nombre"
+              required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 py-2">
+            <label class="h6" for="ar_descripcion">Descripcion de Articulo:</label>
+            <textarea id="ar_descripcion" type="text" class="form-control" name="ar_descripcion" placeholder="Ingrese descripcion de articulo"
+              [(ngModel)]="ar_descripcion" rows="3" required></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 py-2">
+            <label class="h6" for="ar_precio">Precio:</label>
+            <input id="ar_precio" type="number" class="form-control" name="ar_precio" placeholder="Ingrese precio de articulo" [(ngModel)]="ar_precio"
+              required value="0">
+          </div>
+          <div class="col-md-4 py-2">
+            <label class="h6" for="ar_cantidad">Cantidad:</label>
+            <input id="ar_cantidad" type="number" class="form-control" name="ar_cantidad" placeholder="Ingrese cantidad de articulo"
+              [(ngModel)]="ar_cantidad" required value="0">
+          </div>
+          <div class="col-md-4 py-2">
+            <label class="h6" for="ar_descuento">Descuento:</label>
+            <input id="ar_descuento" type="number" class="form-control" name="ar_descuento" placeholder="Ingrese descuento de articulo"
+              [(ngModel)]="ar_descuento" required value="0">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 py-2">
+            <label class="h6" for="categoria_id">Categoria:</label>
+            <select class="form-control" id="categoria_id" name="categoria_id" [(ngModel)]="categoria_id" required>
+              <option *ngFor="let categoria of listaCategorias" value="{{categoria.id}}">{{categoria.id}} - {{categoria.nombre}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 py-2">
+            <label class="h6" for="ar_url">URL:</label>
+            <input id="ar_url" type="text" class="form-control" name="ar_url" placeholder="Ingrese url de articulo" [(ngModel)]="ar_url"
+              required>
+          </div>
+        </div>
+        <hr>
+        <button [disabled]="!formArticulo.form.valid" class="btn btn-primary">Ingresar Articulo</button>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5 jumbotron">
+      <h4>Lista de Categorias</h4>
+
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let categoria of listaCategorias; let i = index">
+          <strong> Codigo: {{categoria.id}}</strong>
+           - <img src="assets/delete.svg" height="25px" width="25px" (click)=removerCategoria(i)>
+          <br/> Nombre: {{categoria.nombre}}
+          <br> Descripcion: {{categoria.descripcion}}
+          
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-5 jumbotron">
+      <h4>Lista de Articulos</h4>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let articulo of listaArticulos; let i = index">
+          <strong> Nombre: {{articulo.nombre}}</strong>
+           - <img src="assets/delete.svg" height="25px" width="25px" (click)=removerArticulo(i)>
+          <br> Descripcion: {{articulo.descripcion}}
+          <br> Cantidad: {{articulo.cantidad}}
+          <br> Precio: {{articulo.precio}}
+          <br> Fecha: {{articulo.fecha}}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

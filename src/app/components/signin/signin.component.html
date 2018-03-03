@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Ingreso al Sistema</h2>
+      <form #formSignin="ngForm" (ngSubmit)="loginUsuario()">
+        <div class="row">
+          <div class="col-md-12">
+            <label for="email">Correo Electronico:</label>
+            <input id="email" type="email" class="form-control"  name="email" placeholder="Ingrese correo electronico" [(ngModel)]="email" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <label for="password">Contraseña:</label>
+            <input id="password" type="password" class="form-control"  name="password" placeholder="Contraseña" [(ngModel)]="password" required>
+          </div>
+        </div>
+<hr/>
+        <button [disabled]="!formSignin.form.valid" class="btn btn-primary">Log in</button>
+      </form>
+    </div>
+    <div class="col-md-6" *ngIf="listaUsuarios.length">
+      <h2>Lista de Paquetes</h2>
+      <ul>
+          <li *ngFor="let usuario of listaUsuarios; let i = index">
+            {{usuario.email}} 
+                        {{usuario.password}}
+            
+          </li>
+        </ul>
+  </div> 
+  </div>
+</div>

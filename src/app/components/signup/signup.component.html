@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 jumbotron">
+      <h3>Registro</h3>
+      <form #formSignup="ngForm" (ngSubmit)="registrarUsuario()">
+        <div class="row">
+          <div class="col-md-12 py-2">
+            <label class="h6" for="email">Correo Electronico:</label>
+            <input id="email" type="email" class="form-control" name="email" placeholder="Ingrese correo electronico" [(ngModel)]="email"
+              required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 py-2">
+            <label class="h6" for="nombre">Nombre:</label>
+            <input id="nombre" type="text" class="form-control" name="nombre" placeholder="Ingrese su nombre" [(ngModel)]="nombre" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 py-2">
+            <label class="h6" for="apellido">Apellido:</label>
+            <input id="apellido" type="text" class="form-control" name="apellido" placeholder="Ingrese su apellido" [(ngModel)]="apellido"
+              required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 py-2">
+            <label class="h6" for="password">Contraseña:</label>
+            <input id="password" type="password" class="form-control" name="password" placeholder="Contraseña" [(ngModel)]="password"
+              required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 py-2">
+            <label class="h6" for="telefono">Telefono:</label>
+            <input id="telefono" type="text" class="form-control" name="telefono" placeholder="Ingrese su telefono" [(ngModel)]="telefono"
+              required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 py-2">
+            <label class="h6" for="direccion">Direccion:</label>
+            <input id="direccion" type="text" class="form-control" name="direccion" placeholder="Ingrese su direccion" [(ngModel)]="direccion"
+              required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 py-2">
+            <label class="h6" for="rol">Rol:</label>
+            <select class="form-control" id="rol" name="rol" [(ngModel)]="rol" required>
+              <option *ngFor="let rol of listaRoles" value="{{rol.id}}">{{rol.id}} - {{rol.rol}}</option>
+            </select>
+          </div>
+        </div>
+        <hr/>
+        <button [disabled]="!formSignup.form.valid" class="btn btn-primary">Registrar</button>
+      </form>
+    </div>
+    <div class="col-md-6" *ngIf="listaUsuarios.length">
+      <h2>Lista de Usuarios</h2>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let usuario of listaUsuarios; let i = index">
+          Email: {{usuario.email}}  <br/>
+          Nombre: {{usuario.nombre}} {{usuario.apellido}}
+
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
